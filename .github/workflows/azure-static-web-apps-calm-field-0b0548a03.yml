@@ -10,6 +10,7 @@ on:
       - master
 
 jobs:
+
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -19,6 +20,16 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: npm run build -- --configuration production
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -30,7 +41,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "dist/bareka" # Built app content directory - optional
+          output_location: "dist/Test1" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
