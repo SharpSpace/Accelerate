@@ -29,22 +29,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Ensure Angular CLI is installed
-        run: npx ng version
-
       - name: Build Angular app
         run: npx ng build --configuration production
 
-      - name: Build And Deploy
-        id: builddeploy
+      - name: Deploy to Azure Static Web Apps
+        id: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_FIELD_0B0548A03 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"
-          api_location: ""
-          output_location: "dist/Test1"
+          app_location: "/"               # Root of your repo
+          api_location: ""                # No API
+          output_location: "dist/Test1"   # Where Angular build puts output
+          skip_app_build: true            # <---- Tell Azure to skip its internal build
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
