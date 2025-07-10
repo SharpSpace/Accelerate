@@ -10,7 +10,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 
-import { App } from './app';
 import { LogService } from '../services/LogService.service';
 
 @NgModule({

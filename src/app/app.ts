@@ -94,10 +94,10 @@ export class App implements OnInit {
     parceLine(line: string) {
         if (!line.trim()) return;
 
-        const timestamp = line.substring(0, 19).trim();
         const sensor = line.substring(22, 50).trim();
 
         if (sensor.startsWith('T_Spike Load..Gas') || sensor.startsWith('T_Paddle Load..Gas')) {
+            const timestamp = line.substring(0, 19).trim();
             const values = line
                 .replace(timestamp, '')
                 .trim()
