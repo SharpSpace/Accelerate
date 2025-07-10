@@ -17,9 +17,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          submodules: true
-          lfs: false
 
       - name: Set up Node.js 22.12.0
         uses: actions/setup-node@v3
@@ -38,10 +35,8 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_FIELD_0B0548A03 }}
           action: "upload"
-          app_location: "/"               # Root of your repo
-          api_location: ""                # No API
-          output_location: "dist/Test1"   # Where Angular build puts output
-          skip_app_build: true            # <---- Tell Azure to skip its internal build
+          app_location: "dist/Test1"    # This is where the index.html lives now
+          skip_app_build: true          # Skip Oryx
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
