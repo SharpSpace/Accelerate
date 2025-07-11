@@ -2,6 +2,8 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
 
+Live demo: https://calm-field-0b0548a03.1.azurestaticapps.net/
+
 ## Development server
 
 To start a local development server, run:
